@@ -4,29 +4,23 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "User")
+@Table(name = "RATBooking")
 @Data
-public class User {
+public class RATBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "PatientName")
+    private String patientName;
+
     @Column(name = "Email")
     private String email;
+
     @Column(name = "Phone Number")
-    Long phoneNumber;
-    @Column(name = "Password")
-    String password;
+    private Long phoneNumber;
 
-    @OneToOne(mappedBy = "user")
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
-
-    @OneToOne(mappedBy = "user")
-    private Admin admin;
-
-    @OneToOne(mappedBy = "user")
-    private Doctor doctor;
-
 }
