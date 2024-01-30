@@ -1,5 +1,6 @@
 package com.ChannelHealthPro.ChannelHealthPro.entity;
 
+import com.ChannelHealthPro.ChannelHealthPro.Enum.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,6 +20,8 @@ public class User {
     Long phoneNumber;
     @Column(name = "Password")
     String password;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     @OneToOne(mappedBy = "user")
     private Customer customer;
