@@ -6,4 +6,6 @@ import com.ChannelHealthPro.ChannelHealthPro.entity.User;
 public interface UserService {
 
     User registerUser(UserDto user);
+
+    User loginUser(String email, String password);
 }

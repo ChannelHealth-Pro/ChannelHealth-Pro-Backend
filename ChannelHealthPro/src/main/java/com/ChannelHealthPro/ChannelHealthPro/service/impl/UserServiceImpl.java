@@ -34,4 +34,17 @@ public class UserServiceImpl implements UserService {
         // Save the user
         return userRepository.save(newUser);
     }
+
+    public User loginUser(String email, String password) {
+        User user = userRepository.findByEmail(email);
+
+        if (user != null && verifyPassword(password, user.getPassword())) {
+            return user;
+        }
+
+        return null;
+    }
+    private boolean verifyPassword(String inputPassword, String storedPassword) {
+        return inputPassword.equals(storedPassword);
+    }
 }

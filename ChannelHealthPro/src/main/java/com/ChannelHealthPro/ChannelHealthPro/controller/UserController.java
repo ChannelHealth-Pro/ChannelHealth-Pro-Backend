@@ -1,6 +1,7 @@
 package com.ChannelHealthPro.ChannelHealthPro.controller;
 
 
+import com.ChannelHealthPro.ChannelHealthPro.dto.request.LoginRequestDto;
 import com.ChannelHealthPro.ChannelHealthPro.dto.request.UserDto;
 import com.ChannelHealthPro.ChannelHealthPro.entity.User;
 import com.ChannelHealthPro.ChannelHealthPro.service.UserService;
@@ -15,9 +16,16 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/login")
-    public String Login(){
-        return "login";
+    public ResponseEntity<User> loginUser(@RequestBody LoginRequestDto loginRequest) {
+        User user = userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
+
+        if (user != null) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
+
 
 
 
